@@ -1,0 +1,50 @@
+struct processo {
+    pilha_thread1: mem[] // var primitivas, ponteiros...
+    pilha_thread2: mem[] // var primitivas, ponteiros...
+    pilha_thread3: mem[] // var primitivas, ponteiros...
+
+    pc_thread1: *binary
+    pc_thread2: *binary
+    pc_thread3: *binary
+
+    heap: mem[] // memoria dinamica em geral
+    binary: executavel
+    metadados
+}
+
+
+
+mutex_x = mutex(x);
+
+struct mutex {
+    lock(),
+    unlock(),
+    data,
+    is_used
+}
+
+lock() {
+    while(is_used);
+    is_used = true;
+}
+
+unlock() {
+    is_used = false;
+}
+
+thread1 chama mutex_x.lock()
+thread2 chama mutex_x.lock()
+thread1 faz alguma operação em mutex_x.data
+thread3 chama mutex.lock()
+thread1 chama mutex_x.unlock()
+
+(transmissor, receptor)
+
+thread1 controla o transmissor
+thread2 controla o receptor
+
+thread1 envia pelo transmissor "ola thread"
+thread2 espera valor pelo receptor e imprime o que for recebido
+
+print(x)
+
