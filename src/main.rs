@@ -11,6 +11,7 @@ fn main() {
     const GEN_THREADS: usize = 1 << 4;
     const NUM_PER_THREADS: usize = 1 << 10;
     const MIN_SIZE: usize = 1 << 11;
+    
     let mono_numbers = Arc::new(Mutex::new(Vec::<isize>::new()));
     let multi_numbers = Arc::new(Mutex::new(Vec::<isize>::new()));
     
@@ -40,6 +41,12 @@ fn main() {
     let start_multi = Instant::now();
     multi_thread::mergesort(Arc::clone(&multi_numbers), 0, GEN_THREADS*NUM_PER_THREADS, MIN_SIZE);
     let end_multi = start_multi.elapsed();
+
+    /* CUIDADO, CRIAR THREADS SEM LIMITAÇÃO PODE QUEBRAR O PC
+    let start_multi = Instant::now();
+    multi_thread::mergesort(Arc::clone(&multi_numbers), 0, GEN_THREADS*NUM_PER_THREADS, 1);
+    let end_multi = start_multi.elapsed();
+    */
 
     println!("Single Thread elapsed time: {}ms", end_mono.as_millis());
     println!("Multi Thread elapsed time: {}ms", end_multi.as_millis());
