@@ -4,7 +4,7 @@ use std::thread;
 use std::time::Instant;
 
 mod multi_thread;
-mod mono_thread;
+mod single_thread;
 
 fn main() {
     // Number used to generate vector (size = GEN_THREADS * NUM_PER_THREADS)
@@ -12,8 +12,8 @@ fn main() {
     const NUM_PER_THREADS: usize = 1 << 10;
     const MIN_SIZE: usize = 1 << 11;
     
-    let mono_numbers = Arc::new(Mutex::new(Vec::<isize>::new()));
-    let multi_numbers = Arc::new(Mutex::new(Vec::<isize>::new()));
+    let mono_numbers = Arc::new(Mutex::new(Vec::<i16>::new()));
+    let multi_numbers = Arc::new(Mutex::new(Vec::<i16>::new()));
     
     //Generate vector using threads
     let mut threads = Vec::new();
