@@ -25,7 +25,7 @@ fn main() {
             let mut mono = mono_numbers.lock().unwrap();
             let mut multi = multi_numbers.lock().unwrap();
             for _ in 1..=NUM_PER_THREADS {
-                let number = rng.gen::<isize>();
+                let number = rng.gen::<i16>();
                 mono.push(number);
                 multi.push(number);
             }
@@ -35,7 +35,7 @@ fn main() {
         t.join().unwrap();
     }
     let start_mono = Instant::now();
-    mono_thread::mergesort(Arc::clone(&mono_numbers), 0, GEN_THREADS*NUM_PER_THREADS);
+    single_thread::mergesort(Arc::clone(&mono_numbers), 0, GEN_THREADS*NUM_PER_THREADS);
     let end_mono = start_mono.elapsed();
 
     let start_multi = Instant::now();

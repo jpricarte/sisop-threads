@@ -1,7 +1,7 @@
 use std::sync::{Arc,Mutex};
 use std::thread;
 
-pub fn mergesort(arr: Arc<Mutex<Vec<isize>>>, begin: usize, end: usize, min_size: usize)  {
+pub fn mergesort(arr: Arc<Mutex<Vec<i16>>>, begin: usize, end: usize, min_size: usize)  {
     if end - 1 > begin {
         let mid = begin + (end - begin) / 2;
         
@@ -27,7 +27,7 @@ pub fn mergesort(arr: Arc<Mutex<Vec<isize>>>, begin: usize, end: usize, min_size
     }
 }
 
-fn merge(arr: Arc<Mutex<Vec<isize>>>, begin: usize, mid: usize, end: usize) {
+fn merge(arr: Arc<Mutex<Vec<i16>>>, begin: usize, mid: usize, end: usize) {
     let left_size = mid - begin;
     let right_size = end - mid;
     let mut numbers = arr.lock().unwrap();
